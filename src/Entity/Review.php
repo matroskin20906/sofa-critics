@@ -2,10 +2,36 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+
+#[
+    UniqueEntity('hash'),
+    ORM\Table(name: 'app.review')
+]
 class Review
 {
+    #[
+        ORM\Id,
+        ORM\Column(type: 'integer'),
+        ORM\GeneratedValue(strategy: "SEQUENCE"),
+        ORM\SequenceGenerator(sequenceName: "app.review_id_seq", allocationSize: 1, initialValue: 1)
+    ]
     private ?int $id = null;
+
+    #[
+        ORM\Column(type: 'integer'),
+    ]
     private ?int $authorId = null;
+
+    #[
+        ORM\Column(type: 'string'),
+        Assert\NotBlank,
+        Assert\Type(type: 'string'),
+        Assert\Length(max: 255)
+    ]
     private ?string $title = null;
     private array $content = [];
     private array $votes = [];
