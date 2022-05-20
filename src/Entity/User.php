@@ -11,14 +11,22 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
-//TODO: implement registration form
 #[
-    UniqueEntity('hash'),
+    UniqueEntity('id'),
     Entity(repositoryClass: UserRepository::class),
     ORM\Table(name: 'app.user')
 ]
+#[UniqueEntity(fields: ['password'], message: 'There is already an account with this password')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    #[
+        ORM\Column(type: 'string', length: 40, nullable: false),
+        Assert\NotBlank,
+        Assert\Type(type: 'string'),
+        Assert\Length(max: 40)
+    ]
+    private string $username = "name";
+
     #[
         ORM\Id,
         ORM\Column(type: 'integer'),
@@ -37,6 +45,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
 
     /**
      * @param int|null $id
