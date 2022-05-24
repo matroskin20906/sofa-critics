@@ -14,7 +14,7 @@ class FilmController extends AbstractController
         return $this->render('base.html.twig');
     }
 
-    #[Route('/film', name: 'film_page', methods: ['GET'])]
+    #[Route('/film/{id}', name: 'film_page', methods: ['GET'])]
     public function id(): Response
     {
         return $this->render('film.html.twig');
