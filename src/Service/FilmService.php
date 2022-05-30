@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Film;
-use App\Entity\Keyword;
 use App\Repository\FilmRepository;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,10 +33,16 @@ class FilmService
         return $this->repository->findBy(['name' => $name], array('id' => 'DESC'));
     }
 
-    public function findByKeyword(Keyword $keyword): ?array
+    public function findNFilms(int $page, int $n): ?array
     {
-
-        return $this->repository->;
+        $arrResult = [];
+        $page--;
+        $start = $n * $page;
+        $stop = $start + $n;
+        for ($i = $start; $i < $stop; $i++) {
+            $arrResult[] = $this->findById($i);
+        }
+        return $arrResult;
     }
 
     public function create(?Film $film): Response

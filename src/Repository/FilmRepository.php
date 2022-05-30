@@ -25,6 +25,34 @@ class FilmRepository extends ServiceEntityRepository
         parent::__construct($registry, Film::class);
     }
 
+    /**
+     * @return Film[]
+     */
+    public function findAllWithActor(string $actor): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT f
+            FROM App\Entity\Film f
+            WHERE f.actors like %actor%'
+        )->setParameter('actor', $actor);
+        return $query->getResult();
+    }
+
+    /**
+     * @return Film[]
+     */
+    public function findAllWithKeyword(string $keyword): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT f
+            FROM App\Entity\Film f
+            WHERE f.keywords like %keyword%'
+        )->setParameter('keyword', $keyword);
+        return $query->getResult();
+    }
+
     public function create(Film $film): Response
     {
         $errors = $this->validator->validate($film);

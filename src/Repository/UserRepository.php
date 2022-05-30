@@ -24,6 +24,20 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * @return User[]
+     */
+    public function  getByRole(string $role): array
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT u
+            FROM App\Entity\User u
+            WHERE u.roles like %role%'
+        )->setParameter('role', $role);
+        return $query->getResult();
+    }
+
     public function create(User $user): Response
     {
         $errors = $this->validator->validate($user);

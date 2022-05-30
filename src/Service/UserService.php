@@ -19,6 +19,6 @@ class UserService
 
     public function getById(int $id): ?User
     {
-        return $this->repository->findOneBy(['id' => $id], array('id' => 'DESC'));
+        return $this->repository->findOneBy(['id' => $id]);
     }
 }

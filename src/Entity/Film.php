@@ -47,6 +47,11 @@ class Film
     #[ORM\Column(type: 'json')]
     private array $keywords = [];
 
+    public function addKeyword(string $keyword): void
+    {
+        $this->keywords[] = $keyword;
+    }
+
     /**
      * @return array
      */
