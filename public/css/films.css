@@ -1,0 +1,77 @@
+
+
+#padding{
+    padding: 14px;
+    display : inline-block;
+}
+
+#filmOutbox{
+    width: 210px;
+    padding: 5px;
+    background-color: rgb(24, 0, 238);
+    height: 400px;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+}
+#coment{
+    height: 400px;
+    width:975px;
+    background-color: brown;
+}
+#filmInbox{
+    width: 210px;
+    height: 300px;
+    display : block;
+}
+#filmsaf{
+    width: 210px;
+    height: 300px;
+}
+#avaInbox{
+    width: 975px;
+    height: 150px;
+ /***   background-color: rgb(255, 251, 0); ***/
+    display : inline-block;
+}
+#usersscoment{
+    padding: 30px;
+    font-size: 20px;
+}
+#pluss{
+    height: 150px;
+    width: 350px;
+ /***   background-color: rgb(30, 255, 0); ***/
+    float: right;
+}
+#minus{
+    float: right;
+    height: 150px;
+    width: 350px;
+ /***   background-color: rgb(255, 0, 0);  ***/
+
+   
+}
+#vote{
+    position: relative;
+    top:20px;
+	right: -13px;
+	height: 100px;
+	width: 100px;
+
+}
+#voteplus{
+    font-size: 70px;
+    position: relative;
+    top:-50px;
+	right: -145px;
+}
+#voteminus{
+    font-size: 70px;
+    position: relative;
+    top:-50px;
+	right: -145px;
+}
+hr{
+
+	width:80%;
+}

@@ -1,0 +1,122 @@
+@font-face{
+	src: url("../font/FontsFree-Net-Serico-Regular.ttf") ;
+	font-family: 'Serico';
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face{
+	src: url("../font/Algerian.TTF");
+	font-family: 'Algerian';            /*Serica nav numurus*/
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face{
+	src: url("../font/times-new-roman.ttf");
+	font-family: 'Times';
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face{
+	src: url("../font/times-new-roman-italic.ttf");
+	font-family: 'Times';
+	font-weight: normal;
+	font-style: italic;
+}
+@font-face{
+	src: url("../font/times-new-roman-bold.ttf");
+	font-family: 'Times';
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face{
+	src: url("../font/times-new-roman-bold-italic.ttf");
+	font-family: 'Times';
+	font-weight: bold;
+	font-style: italic;
+}
+
+
+
+body{
+	font-size:20px;
+	font-family: 'Serico','Algerian','Times';
+	min-width:1300px;                            /*jamaina */
+    background-image: url("../img/back.jpg");
+}
+nav{
+	background-color:rgb(215,188,83);
+	height:152px;
+}
+
+
+
+#top-menu{
+
+
+   width: 100%;
+ min-width:1300px;
+ vertical-align: middle;
+ font-size:1.5em;
+
+} 
+
+
+
+#searchlogo{
+	position: relative;
+	float:right;
+	right: 100px;
+	top: 50px;
+	height: 55px;
+} 
+#logo{
+	position: relative;
+	float:right;
+	right: 13px;
+	top:13px;
+	height: 125px;
+} 
+
+#ava{
+	position: relative;
+	left: 13px;
+	height: 100px;
+	width: 99px;
+
+}
+
+#box{
+	position: relative;
+	float:left;
+	left: 25px;
+	top:13px;
+	height: 125px;
+	width: 125px;
+	background-color: rgb(255, 255, 255);
+	
+}
+#minibox{
+	width: 125px;
+	height: 25px;
+	background-color: rgb(255, 255, 255);
+	line-height: 25px;
+
+}
+#minitext{
+	position: relative;
+	left: 7px;
+}
+
+#TcontentT{
+	
+	min-height: 1500px;
+	
+}
+#fimlsbox{
+	
+	margin: auto;
+	min-height: 3000px;
+	width: 1004px;
+	background-color: rgb(255, 255, 255);
+
+}
