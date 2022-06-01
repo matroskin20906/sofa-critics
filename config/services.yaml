@@ -26,7 +26,7 @@ services:
         arguments:
             $targetDirectory: '%film_photos_directory%'
 
-    App\Service\UserUpload:
+    App\Service\UserUploader:
         arguments:
             $targetDirectory: '%user_photos_directory%'
 
