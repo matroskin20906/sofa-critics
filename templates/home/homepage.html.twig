@@ -5,65 +5,110 @@
 
 {% block title %}Homepage{% endblock %}
 
-{% block nickname %} NameNick99 {% endblock %}
+{% block nickname %} NameNick99 {# Ник залогиненого #} {% endblock %}
+ 
+
 
 {% block content %}
+{# 
+{% for # айди фильма # in # массив # %}             
+<div id="padding" >
+    <div id="filmOutbox">
+        <div id="filmInbox">
+            <img id="filmsaf" src="{{ asset('img/filmsaf/filmid.png') }}" alt="" >
+        </div>
+            # название фильна #
+    </div>
+</div>
+ {% endfor %}  
+
+#}
+
+
+<div id="padding" >
+<a href="{{ path('app_register') }}">
+    <div id="filmOutbox">
+        <div id="filmInbox">
+            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
+        </div>
+        <div id="filmInboxdown">
+             Name is short 
+            <p > </p> 
+            <p >  </p> 
+        </div>
+    </div>
+</a>
+</div>
 
 <div id="padding" >
     <div id="filmOutbox">
         <div id="filmInbox">
             <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
         </div>
-        
-            <p>Name of the film taht i want to see next yera in june </p>
-        
+        <div id="filmInboxdown">
+             Name is short 
+            <p > </p> 
+            <p >  </p> 
+        </div>
     </div>
 </div>
 
 <div id="padding" >
     <div id="filmOutbox">
         <div id="filmInbox">
-        <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
+            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
         </div>
-        
-            <p>Name of the film taht i want to see next yera in june </p>
-        
+        <div id="filmInboxdown">
+            The Name is not short 
+            <p > </p> 
+            <p >  </p> 
+        </div>
     </div>
 </div>
-
 
 <div id="padding" >
     <div id="filmOutbox">
         <div id="filmInbox">
-        <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
+            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
         </div>
-        
-            <p>Name of the film taht i want to see next yera in june </p>
-        
+        <div id="filmInboxdown">
+             The Name is not short, because it is very long 
+            <p > </p> 
+            <p >  </p> 
+        </div>
     </div>
 </div>
-
 
 <div id="padding" >
     <div id="filmOutbox">
         <div id="filmInbox">
+            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
         </div>
-        
-            <p>Name of the film taht i want to see next yera in june </p>
-        
+        <div id="filmInboxdown">
+             Name is short 
+            <p > </p> 
+            <p >  </p> 
+        </div>
     </div>
 </div>
-
 
 <div id="padding" >
+<a href="{{ path('film_new') }}">
     <div id="filmOutbox">
         <div id="filmInbox">
+            <img id="filmpluss" src="{{ asset('img/plussfilm.png') }}" alt="" >
         </div>
-        
-            <p>Name of the film taht i want to see next yera in june </p>
-        
+        <div id="filmInboxdown">
+
+            <p >  ADD NEW FILM</p> 
+            <p >  </p> 
+            <p >  </p> 
+        </div>
     </div>
+</a>
 </div>
+
+
 
 {% endblock %}
 

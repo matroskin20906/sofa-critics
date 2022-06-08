@@ -38,7 +38,7 @@
 
 
 body{
-	font-size:20px;
+                   	font-size:20px; 
 	font-family: 'Serico','Algerian','Times';
 	min-width:1300px;                            /*jamaina */
     background-image: url("../img/back.jpg");
@@ -100,23 +100,70 @@ nav{
 	height: 25px;
 	background-color: rgb(255, 255, 255);
 	line-height: 25px;
-
+	
 }
 #minitext{
 	position: relative;
 	left: 7px;
+	font-size: 20px;
+	overflow: hidden;
 }
 
 #TcontentT{
 	
-	min-height: 1500px;
+	max-height: 1860px;
 	
 }
 #fimlsbox{
-	
-	margin: auto;
-	min-height: 3000px;
+		margin: auto;                         
+	max-height: 1800px;
 	width: 1004px;
 	background-color: rgb(255, 255, 255);
+
+}
+#pagebtn{
+       	margin: auto;                         
+	min-height: 60px;
+	width: 1004px;
+	font-size: 50px;
+	background-color: rgb(0, 162, 255);
+}
+#oldpage{
+	position: relative;
+	left: 45%;
+	display : inline-block;
+}
+#newpage{
+	position: relative;
+	left: 45%;
+	display : inline-block;
+}
+#pagecount{
+	position: relative;
+	left: 45%;
+	display : inline-block;
+}
+#inviz{
+
+		visibility: hidden;
+}
+
+#registrarionbox {
+    min-width:1300px;
+    min-height: 500px;
+	font-size: 50px;
+	padding: 30px;
+}
+#userchargebox {
+    min-width:1300px;
+    min-height: 500px;
+	font-size: 50px;
+	padding: 30px;
+}
+#filmchargebox{
+    min-width:1300px;
+    min-height: 500px;
+	font-size: 50px;
+	padding: 30px;
 
 }

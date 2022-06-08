@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block title %}New user{% endblock %}
+
+{% block avatar %} {% endblock %}
+ 
+{% block pagebtn %}  {% endblock %}
+
+{% block content %}
+    
+    <div id="userchargebox">
+    <h1> Changing settings</h1>
+    <div id="useravatarlogobox">
+        <img id="useravatarlogo" src="{{ asset('img/ava.png') }}" alt="" >
+    </div>
+    {{ form_start(userForm) }}
+
+        {{ form_row(userForm.profile_picture) }}
+
+        
+        <button type="submit" class="btn">Change</button>
+    {{ form_end(userForm) }}
+
+{#  
+    {{ form_start(userForm) }}
+        {{ form_row(userForm.username) }}
+        <button type="submit" class="btn">Change</button>
+    {{ form_end(userForm) }}     
+
+    {{ form_start(userForm) }}
+        {{ form_row(userForm.oldPassword, {
+            label: 'Old Password'
+        }) }}
+        {{ form_row(userForm.newPassword, {
+            label: 'New Password'
+        }) }}
+        <button type="submit" class="btn">Change</button>
+    {{ form_end(userForm) }}
+#}    
+    </div>
+{% endblock %}

@@ -5,6 +5,7 @@
     display : inline-block;
 }
 
+
 #filmOutbox{
     width: 210px;
     padding: 5px;
@@ -12,6 +13,7 @@
     height: 400px;
     color: rgb(255, 255, 255);
     font-size: 25px;
+ 
 }
 #coment{
     height: 400px;
@@ -21,11 +23,24 @@
 #filmInbox{
     width: 210px;
     height: 300px;
-    display : block;
+
 }
+#filmInboxdown{
+    width: 210px;
+    height: 100px;
+    overflow: hidden
+}
+
 #filmsaf{
     width: 210px;
     height: 300px;
+}
+
+#filmpluss{
+    width: 210px;
+    height: 210px;
+    position: relative;
+    top: 100px;
 }
 #avaInbox{
     width: 975px;
@@ -74,4 +89,32 @@
 hr{
 
 	width:80%;
+}
+
+#useravatarlogo{
+    width: 150px;
+    height: 150px;
+}
+
+#useravatarpluss{
+    width: 150px;
+    height: 150px;
+}
+#useravatarlogobox{
+    padding: 30px;
+    display: inline-block;
+}
+#blankava{
+    width: 300px;
+    height: 150px;
+    display: inline-block;
+}
+
+#newfilmimgbox{
+    padding: 30px;
+    display: inline-block;
+}
+#newfilmimg{
+    width: 150px;
+    height: 150px;
 }

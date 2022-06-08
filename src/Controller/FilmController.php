@@ -49,7 +49,7 @@ class FilmController extends AbstractController
         }
 
         return $this->renderForm('film/new.html.twig', [
-            'form' => $form,
+            'filmForm' => $form,             // ... changed name from form into filmForm
         ]);
     }
 
@@ -64,4 +64,10 @@ class FilmController extends AbstractController
     {
         return $this->render('film\filmpage.html.twig');
     }
+
+
+/////////////////////delete everything below\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+   
+
+//////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 }

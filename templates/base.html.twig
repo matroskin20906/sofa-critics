@@ -12,8 +12,9 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/reset.css') }}"> 
-            <link rel="stylesheet" href="{{ asset('css/topnav.css') }}">  
+            <link rel="stylesheet" href="{{ asset('css/basetopnav.css') }}">  
             <link rel="stylesheet" href="{{ asset('css/films.css') }}">
+
         {% endblock %}
 
 
@@ -24,20 +25,19 @@
     <!--[if lte IE 9]>
     <p class="browserupgrade"> You are using an <strong> outdated </strong> browser. Please change it.
     <![endif]-->
-    
-    <header>
+
         
             {% block header_top %}
-                <nav id="top-meu">
+                <nav id="top-menu">
                     {% block avatar %}
+                        <a href="{{ path('user_new') }}">
                         <div id="box">
-                        <a href="{{ path('app_welcome') }}">
                             <img id="ava" src="{{ asset('img/ava.png') }}" alt="" >
-                        </a>
                             <div id="minibox">
-                                <p id="minitext">{% block nickname %} {% endblock %}</p>
+                                <p id="minitext"> {% block nickname %} {% endblock %} </p>
                             </div>
                         </div>
+                        </a>
                     {% endblock %}
                         <a href="{{ path('app_welcome') }}">
                             <img id="logo" src="{{ asset('img/logo.png') }}" alt="" >
@@ -45,19 +45,29 @@
                         <a href="{{ path('app_filmpage') }}">
                             <img id="searchlogo" src="{{ asset('img/search.png') }}" alt="" >
                         </a>
-                <nav id="top-meu">
-                <p>  </p>
                 </nav>
 
             {% endblock %}
-            
-                <div id="TcontentT">
+            <div id="TcontentT">
                 
                 <div id="fimlsbox">
-                {% block content %} {% endblock %}
+                    {% block content %} {% endblock %}
                 </div>
-                
+
+            {% block pagebtn %}
+                <div id="pagebtn">
+                    <div id="oldpage" id="inviz">
+                        <p id="inviz"> << </p>
+                    </div>
+                    <div id="pagecount">
+                            {% block pagecount %} 1 {% endblock %}
+                    </div>
+                    <div id="newpage">
+                        <p> >> </p>
+                    </div>
                 </div>
+            {% endblock %}
+            </div>
             
         
     </body>

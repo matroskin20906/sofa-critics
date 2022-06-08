@@ -23,17 +23,17 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $pictureFile */
-            $pictureFile = $form->get('user_picture')->getData();
+            $pictureFile = $form->get('profile_picture')->getData(); // ... changed name from user_picture into profile_picture
 
             if ($pictureFile) {
                 $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $pictureFileName = $userUploader->upload($pictureFile);
                 $newFilename = $user->getUserIdentifier();
 
-                // Move the file to the directory where film pictures are stored
+                // Move the file to the directory where user pictures are stored
                 try {
                     $pictureFile->move(
-                        $this->getParameter('film_picture_directory'),
+                        $this->getParameter('user_picture_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
@@ -42,11 +42,11 @@ class UserController extends AbstractController
 
             }
 
-            return $this->redirectToRoute('app.welcome');
+            return $this->redirectToRoute('app_welcome');
         }
 
         return $this->renderForm('user/new.html.twig', [
-            'form' => $form,
+            'userForm' => $form,           // ... changed name from form into userForm
         ]);
     }
 

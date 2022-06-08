@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block title %}New film{% endblock %}
+
+{% block pagebtn %}  {% endblock %}
+
+{% block nickname %} 1Nam3N1ck1 {# Ник залогиненого #} {% endblock %}
+
+{% block content %}
+
+    <div id="filmchargebox">
+        <h1> New Film</h1>
+{#     in FilmConoller name is form... i changed it to filmForm  #}
+    {{ form_start(filmForm) }}
+
+        {{ form_row(filmForm.film_picture) }}
+{#         
+        {{ form_row(FilmForm.name) }}
+        {{ form_row(FilmForm.genre) }}
+        {{ form_row(FilmForm.year )}}
+#}
+        <button type="submit" class="btn">Create</button>
+    {{ form_end(filmForm) }}
+   
+    </div>
+{% endblock %}
