@@ -9,7 +9,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[
     UniqueEntity('hash'),
-    ORM\Table(name: 'app.review')
 ]
 class Review
 {
