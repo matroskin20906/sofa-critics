@@ -24,7 +24,7 @@
 
 #}
 
-
+{% for i in 1..15 %}
 <div id="padding" >
 <a href="{{ path('app_register') }}">
     <div id="filmOutbox">
@@ -32,7 +32,7 @@
             <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
         </div>
         <div id="filmInboxdown">
-             Name is short 
+             {{ i }}
             <p > </p> 
             <p >  </p> 
         </div>
@@ -40,57 +40,7 @@
 </a>
 </div>
 
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-             Name is short 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
-
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-            The Name is not short 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
-
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-             The Name is not short, because it is very long 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
-
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-             Name is short 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
+{% endfor %}
 
 <div id="padding" >
 <a href="{{ path('film_new') }}">
