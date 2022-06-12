@@ -3,18 +3,21 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-
+/**
+ * @Vich\Uploadable
+ */
 #[
+    ORM\Table(name: "`user`"),
+    ORM\Entity(repositoryClass: UserRepository::class),
     UniqueEntity('id'),
-    Entity(repositoryClass: UserRepository::class),
-    ORM\Table(name: 'app.user')
 ]
 #[UniqueEntity(fields: ['password'], message: 'There is already an account with this password')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -30,8 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[
         ORM\Id,
         ORM\Column(type: 'integer'),
-        ORM\GeneratedValue(strategy: "SEQUENCE"),
-        ORM\SequenceGenerator(sequenceName: "app.user_id_seq", allocationSize: 1, initialValue: 1)
+        ORM\GeneratedValue
     ]
     private ?int $id = null;
 
@@ -45,6 +47,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'json')]
     private array $roles = [];
+
+    #[
+        ORM\Column(type: 'string', length: 255, nullable: true)
+    ]
+    private ?string $photo = null;
+
+    /**
+     * @Vich\UploadableField(mapping="user", fileNameProperty="photo")
+     * @var File
+      */
+    private File $photoFile;
 
     /**
      * @return string
@@ -101,8 +114,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // TODO: Implement eraseCredentials() method.
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getUserIdentifier(): string
     {
         return $this->id;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getPhoto(): ?string{
+        return $this->photo;
+    }
+
+    /**
+     * @param string|null $photo
+     * @return $this
+     */
+    public function setPhoto(?string $photo): self {
+        $this->photo = $photo;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getPhotoFile(): ?File {
+        return $this->photoFile;
+    }
+
+    /**
+     * @param File|null $photoFile
+     */
+    public function setPhotoFile(?File $photoFile = null) {
+        $this->photoFile = $photoFile;
+    }
+
 }

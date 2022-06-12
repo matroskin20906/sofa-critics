@@ -4,21 +4,29 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Repository\FilmRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+
+/**
+ * @Vich\Uploadable
+ */
 #[
-    ORM\Table(name:'app.film'),
+    ORM\Table(name: "`film`"),
+    Entity(repositoryClass: FilmRepository::class),
     UniqueEntity('id'),
 ]
 class Film
 {
     #[
         ORM\Id,
+        ORM\GeneratedValue,
         ORM\Column(type: 'integer'),
-        ORM\GeneratedValue(strategy: "SEQUENCE"),
-        ORM\SequenceGenerator(sequenceName: "app.film_id_seq", allocationSize: 1, initialValue: 1)
     ]
     private ?int $id = null;
 
@@ -38,14 +46,35 @@ class Film
     ]
     private ?string $director = null;
 
-    #[ORM\Column(type: 'json')]
-    private array $actors = [];
+    #[
+        ORM\Column(type: 'string', length: 1024, nullable: false),
+        Assert\NotBlank,
+        Assert\Type(type: 'string'),
+        Assert\Length(max: 1024)
+    ]
+    private ?string $actors = null;
 
     #[ORM\Column(type: 'json')]
     private array $reviews = [];
 
-    #[ORM\Column(type: 'json')]
-    private array $keywords = [];
+    #[
+        ORM\Column(type: 'string', length: 1024, nullable: false),
+        Assert\NotBlank,
+        Assert\Type(type: 'string'),
+        Assert\Length(max: 1024)
+    ]
+    private ?string $keywords = null;
+
+    #[
+        ORM\Column(type: 'string', length: 255, nullable: true)
+    ]
+    private ?string $photo = null;
+
+    /**
+     * @Vich\UploadableField(mapping="film", fileNameProperty="photo")
+     * @var File|null
+     */
+    private ?File $photoFile = null;
 
     public function addKeyword(string $keyword): void
     {
@@ -53,17 +82,17 @@ class Film
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getKeywords(): array
+    public function getKeywords(): string
     {
         return $this->keywords;
     }
 
     /**
-     * @param array $keywords
+     * @param string $keywords
      */
-    public function setKeywords(array $keywords): void
+    public function setKeywords(string $keywords): void
     {
         $this->keywords = $keywords;
     }
@@ -117,17 +146,17 @@ class Film
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getActors(): array
+    public function getActors(): string
     {
         return $this->actors;
     }
 
     /**
-     * @param array $actors
+     * @param string $actors
      */
-    public function setActors(array $actors): void
+    public function setActors(string $actors): void
     {
         $this->actors = $actors;
     }
@@ -148,5 +177,34 @@ class Film
         $this->reviews = $reviews;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getPhoto(): ?string{
+        return $this->photo;
+    }
+
+    /**
+     * @param string|null $photo
+     * @return $this
+     */
+    public function setPhoto(?string $photo): self {
+        $this->photo = $photo;
+        return $this;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File|null
+     */
+    public function getPhotoFile(): ?File {
+        return $this->photoFile;
+    }
+
+    /**
+     * @param File|null $photoFile
+     */
+    public function setPhotoFile(?File $photoFile = null) {
+        $this->photoFile = $photoFile;
+    }
 
 }

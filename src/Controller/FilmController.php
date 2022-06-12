@@ -29,8 +29,6 @@ class FilmController extends AbstractController
             // this condition is needed because the 'picture' field is not required
             // so the png file must be processed only when a file is uploaded
             if ($pictureFile) {
-                $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $pictureFileName = $filmUploader->upload($pictureFile);
                 $newFilename = $film->getId();
 
                 // Move the file to the directory where film pictures are stored

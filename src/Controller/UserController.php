@@ -23,7 +23,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $pictureFile */
-            $pictureFile = $form->get('profile_picture')->getData(); // ... changed name from user_picture into profile_picture
+            $pictureFile = $form->get('photoFile')->getData(); // ... changed name from user_picture into profile_picture
 
             if ($pictureFile) {
                 $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -48,11 +48,5 @@ class UserController extends AbstractController
         return $this->renderForm('user/new.html.twig', [
             'userForm' => $form,           // ... changed name from form into userForm
         ]);
-    }
-
-    #[Route('/user/{id}', name: 'user')]
-    public function user(int $id): Response
-    {
-        return $this->render('user.html.twig');
     }
 }
