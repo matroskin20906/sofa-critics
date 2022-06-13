@@ -7,8 +7,9 @@
 
 {% block pagebtn %}  {% endblock %}
 
-{% block nickname %} 1Nam3N1ck1 {# Ник залогиненого #} {% endblock %}
-
+{% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
+{% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
+ 
 {% block content %}
 
     <div id="filmchargebox">

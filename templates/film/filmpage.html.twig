@@ -2,9 +2,10 @@
 
 
 
-{% block title %}filmpage{% endblock %}
+{% block title %} {{ Filmsname }} {% endblock %}
 
-{% block nickname %} 00NickName {% endblock %}
+{% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
+{% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
 
 {% block content %} 
 
@@ -15,45 +16,45 @@
 <div id="padding" >
     <div id="filmOutbox">
         <div id="filmInbox">
-        <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
+        <img id="filmsaf" src="{{ asset('filmPhotos/' ~ Filmsfoto ) }}" alt="" >
         </div>
         
-            Name of the film taht i want to see next yera in june 
+            {{ Filmsname }}
         
     </div>
 </div>
 
 
 
-{% for i in 1..3 %}
+{% for reviewcoment in reviewcoments %}
 <hr>
 
 <div id="padding" >
     <div id="coment">
         <div id="avaInbox">
             <div id="box">
-                <a href="{{ path('app_welcome') }}">
-                    <img id="ava" src="{{ asset('img/ava.png') }}" alt="" >
-                </a>
+ {#              <a href="{{ path('app_welcome') }}">  #} 
+                    <img id="ava" src="{{ asset('userPhotos/'~ reviewfotos[loop.index]) }}" alt="" >
+  {#               </a> #} 
                 <div id="minibox">
-                    <p id="minitext"> 0NackNime0 </p>
+                    <p id="minitext"> {{reviewusers[loop.index]}} </p>
                 </div>
             </div>
             <div id="pluss">
                     <img id="vote" src="{{ asset('img/tick.png') }}" alt="" >
                         <p id="voteplus">
-                          {% block votepluss %} 20 {% endblock %} 
+                          {{reviewpluss[loop.index]}} 
                         </p>
             </div>
             <div id="minus">
                     <img id="vote" src="{{ asset('img/kross.png') }}" alt="" >
                     <p id="voteminus">
-                        {% block voteminus %} 10 {% endblock %}  
+                        {{reviewminus[loop.index]}}
                     </p>
             </div>
         </div>  
         <div id="usersscoment">
-            <p>Name of the film taht i want to see next yera in june eskjedakjsdkjaskdjask jdksajd ksajdkjas djkals jkdjsakl jdsaj dlkajsdlk jaj ksajkld jaskjd klasjdk ajskld jaskdj kasjkd jaskdj kasjdk ajsk jskaljd kasjkd jaskjd kasjdk jaskdj aksjd ksajkdj kasjdk ajsdj askl</p>
+            <p>{{ reviewcoment }}</p>
         </div>
         
     </div>

@@ -5,7 +5,8 @@
 
 {% block title %}Homepage{% endblock %}
 
-{% block nickname %} NameNick99 {# Ник залогиненого #} {% endblock %}
+{% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
+{% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
  
 
 
@@ -24,15 +25,16 @@
 
 #}
 
-{% for i in 1..15 %}
+{% for Filmsname in Filmsnames %}
 <div id="padding" >
 <a href="{{ path('app_register') }}">
     <div id="filmOutbox">
         <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
+{% set waytofoto= 'filmPhotos/' ~ Filmsfotos[loop.index] %}
+            <img id="filmsaf" src="{{ asset(waytofoto) }}" alt="" >
         </div>
         <div id="filmInboxdown">
-             {{ i }}
+             {{ loop.index }}) {{ Filmsname }}
             <p > </p> 
             <p >  </p> 
         </div>

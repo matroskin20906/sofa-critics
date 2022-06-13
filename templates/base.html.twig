@@ -32,7 +32,9 @@
                     {% block avatar %}
                         <a href="{{ path('user_new') }}">
                         <div id="box">
-                            <img id="ava" src="{{ asset('img/ava.png') }}" alt="" >
+
+                            <img id="ava" src={% block logeduserfoto %}  {% endblock %}  alt="" >
+
                             <div id="minibox">
                                 <p id="minitext"> {% block nickname %} {% endblock %} </p>
                             </div>
