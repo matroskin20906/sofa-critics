@@ -5,7 +5,8 @@
 
 {% block title %}Homepage{% endblock %}
 
-{% block nickname %} NameNick99 {# Ник залогиненого #} {% endblock %}
+{% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
+{% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
  
 
 
@@ -24,15 +25,16 @@
 
 #}
 
-
+{% for Filmsname in Filmsnames %}
 <div id="padding" >
 <a href="{{ path('app_register') }}">
     <div id="filmOutbox">
         <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
+{% set waytofoto= 'filmPhotos/' ~ Filmsfotos[loop.index] %}
+            <img id="filmsaf" src="{{ asset(waytofoto) }}" alt="" >
         </div>
         <div id="filmInboxdown">
-             Name is short 
+             {{ loop.index }}) {{ Filmsname }}
             <p > </p> 
             <p >  </p> 
         </div>
@@ -40,57 +42,7 @@
 </a>
 </div>
 
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-             Name is short 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
-
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-            The Name is not short 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
-
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-             The Name is not short, because it is very long 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
-
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-            <img id="filmsaf" src="{{ asset('img/filmsaf.png') }}" alt="" >
-        </div>
-        <div id="filmInboxdown">
-             Name is short 
-            <p > </p> 
-            <p >  </p> 
-        </div>
-    </div>
-</div>
+{% endfor %}
 
 <div id="padding" >
 <a href="{{ path('film_new') }}">

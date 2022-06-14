@@ -12,24 +12,21 @@
 {% block content %}
     
     <div id="userchargebox">
-    <h1> Changing settings</h1>
+    <h1> Changing settings for {{ logedusername }} </h1>
     <div id="useravatarlogobox">
-        <img id="useravatarlogo" src="{{ asset('img/ava.png') }}" alt="" >
+        {% set  mywaytofoto= logeduserphoto %}
+        {% set  mywaytofoto= "userPhotos/" ~  mywaytofoto %}
+        <img id="useravatarlogo" src="{{ asset( mywaytofoto ) }}" alt="" >
     </div>
     {{ form_start(userForm) }}
 
         {{ form_row(userForm.photoFile) }}
-
-        
-        <button type="submit" class="btn">Change</button>
-    {{ form_end(userForm) }}
-
-{#  
-    {{ form_start(userForm) }}
         {{ form_row(userForm.username) }}
         <button type="submit" class="btn">Change</button>
     {{ form_end(userForm) }}     
 
+
+{#
     {{ form_start(userForm) }}
         {{ form_row(userForm.oldPassword, {
             label: 'Old Password'

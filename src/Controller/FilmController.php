@@ -50,24 +50,65 @@ class FilmController extends AbstractController
 
         return $this->renderForm('film/new.html.twig', [
             'filmForm' => $form,             // ... changed name from form into filmForm
+            'logedusername'=> '1Nam3N1ck1',
+            'logeduserphoto'=> '1.png',
         ]);
     }
 
     #[Route('/', name: 'app_welcome', methods: ['GET'])]
     public function welcome(): Response
     {
-        return $this->render('home\homepage.html.twig');
+        return $this->render('home\homepage.html.twig',[
+            'logedusername'=> 'NameNick99',
+            'logeduserphoto'=> '1.png',
+            'Filmsnames' => $Barrayname = array(
+                1 => 'V means Vendetto',
+                2 => 'D means Dislecsia',
+                3 => 'L means Logic',
+            ),
+            'Filmsfotos' => $Barrayfoto = array(
+                1 => '2.png',
+                2 => '3.png',
+                3 => '4.png',
+            ),
+        ]);
     }
 
     #[Route('/film', name: 'app_filmpage', methods: ['GET'])]
     public function id(): Response
     {
-        return $this->render('film\filmpage.html.twig');
+        return $this->render('film\filmpage.html.twig',[
+            'logedusername'=> '00NickName',
+            'logeduserphoto'=> '1.png',
+            'Filmsname'=> 'L means Logic',
+            'Filmsfoto' => '4.png',
+            'reviewfotos' => $Barrayreviewfoto = array(
+                1 => '2.png',
+                2 => '3.png',
+            ),
+            'reviewcoments' => $Barrayreviewcoment = array(
+                1 => 'I hate my live',
+                2 => 'I love my hate',
+            ),
+            'reviewusers' => $Barrayreviewusers = array(
+                1 => 'NameNick99',
+                2 => '1TESTUSER1',
+            ),
+            'reviewpluss' => $Barrayreviewpluss = array(
+                1 => '10',
+                2 => '0',
+            ),
+            'reviewminus' => $Barrayreviewminus = array(
+                1 => '20',
+                2 => '100',
+            ),
+        ]);
     }
 
 
 /////////////////////delete everything below\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
    
+
 
 //////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 }

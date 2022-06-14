@@ -7,8 +7,9 @@
 
 {% block pagebtn %}  {% endblock %}
 
-{% block nickname %} 1Nam3N1ck1 {# Ник залогиненого #} {% endblock %}
-
+{% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
+{% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
+ 
 {% block content %}
 
     <div id="filmchargebox">
@@ -16,12 +17,14 @@
 {#     in FilmConoller name is form... i changed it to filmForm  #}
     {{ form_start(filmForm) }}
 
-        {{ form_row(filmForm.photoFile) }}
-{#         
+        {{ form_row(filmForm.film_picture) }}
+         
         {{ form_row(FilmForm.name) }}
-        {{ form_row(FilmForm.genre) }}
-        {{ form_row(FilmForm.year )}}
-#}
+        {{ form_row(FilmForm.director) }}
+        {{ form_row(FilmForm.actors) }}
+        {{ form_row(FilmForm.keywords) }}
+        
+
         <button type="submit" class="btn">Create</button>
     {{ form_end(filmForm) }}
    
