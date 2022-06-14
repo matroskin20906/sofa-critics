@@ -9,7 +9,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class UserUploader
 {
     private $targetDirectory;
-    private $slugger;
+    private SluggerInterface $slugger;
 
     public function __construct($targetDirectory, SluggerInterface $slugger)
     {

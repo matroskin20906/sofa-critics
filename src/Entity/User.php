@@ -55,9 +55,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @Vich\UploadableField(mapping="user", fileNameProperty="photo")
-     * @var File
+     * @var File|null
       */
-    private File $photoFile;
+    private ?File $photoFile = null;
 
     /**
      * @return string

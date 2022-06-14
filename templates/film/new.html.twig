@@ -17,12 +17,12 @@
 {#     in FilmConoller name is form... i changed it to filmForm  #}
     {{ form_start(filmForm) }}
 
-        {{ form_row(filmForm.film_picture) }}
+        {{ form_row(filmForm.photoFile) }}
          
-        {{ form_row(FilmForm.name) }}
-        {{ form_row(FilmForm.director) }}
-        {{ form_row(FilmForm.actors) }}
-        {{ form_row(FilmForm.keywords) }}
+        {{ form_row(filmForm.name) }}
+        {{ form_row(filmForm.director) }}
+        {{ form_row(filmForm.actors) }}
+        {{ form_row(filmForm.keywords) }}
         
 
         <button type="submit" class="btn">Create</button>

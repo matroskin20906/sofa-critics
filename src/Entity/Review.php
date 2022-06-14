@@ -34,8 +34,41 @@ class Review
         Assert\Length(max: 255)
     ]
     private ?string $title = null;
-    private array $content = [];
+
+    #[
+        ORM\Column(type: 'string'),
+        Assert\NotBlank,
+        Assert\Type(type: 'string'),
+        Assert\Length(max: 2048)
+    ]
+    private ?string $content = null;
+
+    #[
+        ORM\Column(type: 'json')
+    ]
     private array $votes = [];
+
+    #[
+        ORM\Column(type: 'integer'),
+        ORM\ManyToOne(targetEntity: "App\Entity\Film")
+    ]
+    private int $filmId;
+
+    /**
+     * @return int
+     */
+    public function getFilmId(): int
+    {
+        return $this->filmId;
+    }
+
+    /**
+     * @param int $filmId
+     */
+    public function setFilmId(int $filmId): void
+    {
+        $this->filmId = $filmId;
+    }
 
     /**
      * @return array
@@ -78,9 +111,9 @@ class Review
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getContent(): array
+    public function getContent(): string
     {
         return $this->content;
     }
@@ -110,9 +143,9 @@ class Review
     }
 
     /**
-     * @param array $content
+     * @param string $content
      */
-    public function setContent(array $content): void
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }

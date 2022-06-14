@@ -47,8 +47,8 @@ class UserController extends AbstractController
 
         return $this->renderForm('user/new.html.twig', [
             'userForm' => $form,           // ... changed name from form into userForm
-            'logedusername'=> '1TESTUSER1',
-            'logeduserphoto'=> '1.png',
+            'logedusername'=> $user->getUsername(),
+            'logeduserphoto'=> $user->getPhotoFile(),
         ]);
     }
 

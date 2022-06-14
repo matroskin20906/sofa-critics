@@ -25,8 +25,7 @@ class FilmCrudController extends AbstractCrudController
             ImageField::new('photo')
                 ->setBasePath('filmPhotos')
                 ->setUploadDir('public/filmPhotos')
-                ->setUploadedFileNamePattern('[randomhash].[extension]')
-                ->setRequired(true),
+                //->setUploadedFileNamePattern('[randomhash].[extension]')
         ];
     }
 

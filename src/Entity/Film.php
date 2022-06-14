@@ -54,7 +54,10 @@ class Film
     ]
     private ?string $actors = null;
 
-    #[ORM\Column(type: 'json')]
+    #[
+        ORM\Column(type: 'json'),
+        ORM\OneToMany(targetEntity: "App\Entity\Review")
+    ]
     private array $reviews = [];
 
     #[
@@ -71,10 +74,10 @@ class Film
     private ?string $photo = null;
 
     /**
-     * @Vich\UploadableField(mapping="user", fileNameProperty="photo")
-     * @var File
+     * @Vich\UploadableField(mapping="film", fileNameProperty="photo")
+     * @var File|null
      */
-    private File $photoFile;
+    private ?File $photoFile = null;
 
     public function addKeyword(string $keyword): void
     {

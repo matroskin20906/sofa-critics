@@ -21,4 +21,20 @@ class ReviewService
     {
         return $this->repository->findOneBy(['id' => $id]);
     }
+
+    public function increaseGoodVotes(Review $review): Review
+    {
+        $arrayVotes = $review->getVotes();
+        $arrayVotes['good'] = $arrayVotes['good'] + 1;
+        $review->setVotes($arrayVotes);
+        return $review;
+    }
+
+    public function increaseBadVotes(Review $review): Review
+    {
+        $arrayVotes = $review->getVotes();
+        $arrayVotes['bad'] = $arrayVotes['bad'] + 1;
+        $review->setVotes($arrayVotes);
+        return $review;
+    }
 }
