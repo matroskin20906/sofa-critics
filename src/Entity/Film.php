@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -71,10 +71,10 @@ class Film
     private ?string $photo = null;
 
     /**
-     * @Vich\UploadableField(mapping="film", fileNameProperty="photo")
-     * @var File|null
+     * @Vich\UploadableField(mapping="user", fileNameProperty="photo")
+     * @var File
      */
-    private ?File $photoFile = null;
+    private File $photoFile;
 
     public function addKeyword(string $keyword): void
     {
@@ -194,7 +194,7 @@ class Film
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\File\File|null
+     * @return File|null
      */
     public function getPhotoFile(): ?File {
         return $this->photoFile;
@@ -206,5 +206,4 @@ class Film
     public function setPhotoFile(?File $photoFile = null) {
         $this->photoFile = $photoFile;
     }
-
 }

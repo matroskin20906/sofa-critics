@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FilmController extends AbstractController
 {
-
     #[Route('/film/new', name: 'film_new')]
     public function new(Request $request,  FilmUploader $filmUploader): Response
     {
@@ -24,17 +23,20 @@ class FilmController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $pictureFile */
-            $pictureFile = $form->get('film_picture')->getData();
+            $pictureFile = $form->get('photoFile')->getData();
+            $film->setPhotoFile($pictureFile);
 
             // this condition is needed because the 'picture' field is not required
             // so the png file must be processed only when a file is uploaded
             if ($pictureFile) {
+                $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $pictureFileName = $filmUploader->upload($pictureFile);
                 $newFilename = $film->getId();
 
                 // Move the file to the directory where film pictures are stored
                 try {
                     $pictureFile->move(
-                        $this->getParameter('film_picture_directory'),
+                        $this->getParameter('film_photos_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {

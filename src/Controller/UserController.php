@@ -23,7 +23,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $pictureFile */
-            $pictureFile = $form->get('photoFile')->getData(); // ... changed name from user_picture into profile_picture
+            $pictureFile = $form->get('photoFile')->getData();
 
             if ($pictureFile) {
                 $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
@@ -33,7 +33,7 @@ class UserController extends AbstractController
                 // Move the file to the directory where user pictures are stored
                 try {
                     $pictureFile->move(
-                        $this->getParameter('user_picture_directory'),
+                        $this->getParameter('user_photos_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {

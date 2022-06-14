@@ -4,10 +4,10 @@ namespace App\Form;
 
 use App\Entity\Film;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\File;
 
 class FilmType extends AbstractType
 {
@@ -18,21 +18,17 @@ class FilmType extends AbstractType
             ->add('director')
             ->add('actors')
             ->add('keywords')
-            ->add('film_picture', Image::class, [
-            'label' => 'Film Picture (PNG file)',
-            'mapped' => false,
-            'required' => true,
-            'constraints' => [
-                new Assert\Image([
-                    'mimeTypes' => [
-                        'image/png',
-                        'image/jpg',
+            ->add('photoFile', FileType::class, [
+                    'constraints' => [
+                        new File([
+                            'mimeTypes' => [
+                                'image/*',
+                            ],
+                            'mimeTypesMessage' => 'Please upload a valid image',
+                        ])
                     ],
-                    'mimeTypesMessage' => 'Please upload a valid png file',
-                ])
-            ],
-        ])
-        ;
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

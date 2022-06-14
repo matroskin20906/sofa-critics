@@ -73,7 +73,7 @@ class UserRepository extends ServiceEntityRepository
             $this
                 ->_em
                 ->getConnection()
-                ->prepare('ALTER SEQUENCE app.my_user_id_seq RESTART with 1;')
+                ->prepare('ALTER SEQUENCE app.user_id_seq RESTART with 1;')
                 ->executeQuery();
             return new Response('Deleted');
         }
