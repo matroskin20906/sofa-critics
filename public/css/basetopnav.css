@@ -171,3 +171,7 @@ nav{
 	padding: 30px;
 
 }
+#inlinebox{
+	max-width:500px;
+	display : inline-block;
+}
