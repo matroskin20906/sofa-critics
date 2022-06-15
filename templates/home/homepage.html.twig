@@ -71,8 +71,9 @@
             {% block pagebtn %}
                 <div id="pagebtn">
                 {% if pagenum > 1 %}
+                    {% set oldpagenum = pagenum -1 %}
                     <div id="oldpage">                    
-                        <a href="{{ path('app_welcome',[pagenum,12]) }}">
+                        <a href="{{ path('app_welcome',[oldpagenum,12]) }}">
                         <p > << </p>
                         </a>
                     </div>
@@ -81,8 +82,9 @@
                             {{ pagenum }}                           
                     </div>
                 {% if nnum = 12 %}
+                    {% set newpagenum = pagenum + 1 %}
                     <div id="newpage">
-                         <a href="{{ path('app_welcome',[pagenum,12]) }}">
+                         <a href="{{ path('app_welcome',[newpagenum,12]) }}">
                         <p> >> </p>
                         </a>
                     </div>
