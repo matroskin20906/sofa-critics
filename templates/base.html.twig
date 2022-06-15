@@ -45,11 +45,12 @@
                         <a href="{{ path('app_welcome') }}">
                             <img id="logo" src="{{ asset('img/logo.png') }}" alt="" >
                         </a>
-                        <button id='searchlogobtn' >
-                            <img id="searchlogo" src="{{ asset('img/search.png') }}" alt="" >
-                        </button>
-                        <input id="searchinput" type="text" placeholder="Search.." >
- 
+                        <form method="get" action=" path('app_film_search')" >
+                            <button id='searchlogobtn' type="submit">
+                                <img id="searchlogo" src="{{ asset('img/search.png') }}" alt="" >
+                            </button >
+                            <input id="searchinput" type="text" placeholder="Search.." >
+                        </form>
                 </nav>
 
             {% endblock %}

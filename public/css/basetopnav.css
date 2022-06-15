@@ -81,6 +81,8 @@ input{
 	float:right;
 	right: 100px;
 	top: 50px;
+	border: none;
+	background: none;
 }
 #searchlogo{
 	position: relative;
