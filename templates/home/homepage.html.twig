@@ -81,7 +81,7 @@
                 {% if pagenum > 1 %}
                     {% set oldpagenum = pagenum -1 %}
                     <div id="oldpage">                    
-                        <a href="{{ path('app_welcome',[oldpagenum,8]) }}">
+                        <a href="{{ path('app_welcome',{ 'page' : oldpagenum, 'n' : 8} ) }}">
                         <p > << </p>
                         </a>
                     </div>
@@ -92,7 +92,7 @@
                 {% if nnum > 7 %}
                     {% set newpagenum = pagenum + 1 %}
                     <div id="newpage">
-                         <a href="{{ path('app_welcome',[newpagenum,8]) }}">
+                         <a href="{{ path('app_welcome',{'page' : newpagenum,'n' : 8} ) }}">
                         <p> >> </p>
                         </a>
                     </div>

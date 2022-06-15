@@ -49,7 +49,7 @@
     <a href="{{ path('app_register')}}" > Register  </a>
 </div>
 <div id='inlinebox'>
-    <a href="{{ path('app_welcome',[1,12]) }}" > Log in as a Guest</a>
+    <a href="{{ path('app_welcome',{ 'page' : 1 , 'n' : 8 } ) }}" > Log in as a Guest</a>
 </div>
 </div>
 {% endblock %}
