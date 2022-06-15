@@ -18,6 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     ORM\Table(name: "`user`"),
     ORM\Entity(repositoryClass: UserRepository::class),
     UniqueEntity('id'),
+    UniqueEntity('username'),
 ]
 #[UniqueEntity(fields: ['password'], message: 'There is already an account with this password')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface

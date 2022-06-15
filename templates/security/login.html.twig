@@ -6,30 +6,34 @@
 
 {% block avatar %} 
     {% if app.user %}
-    {% block logeduserfoto %} {{ asset('userPhotos/' ~ app.user.photos )}} {% endblock %}
-{% block nickname %} {{ app.user.name }} {# Ник залогиненого #} {% endblock %}
+    {% block logeduserfoto %} {{ asset('userPhotos/' ~ app.user.photo )}} {% endblock %}
+{% block nickname %} {{ app.user.username }} {# Ник залогиненого #} {% endblock %}
     {% endif %}
 {% endblock %}
 
 
 {% block content %}
 <div id="userchargebox">
-<form method="post">
+<form action="{{ path('app_login') }}" method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.name }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Email"/>
+        <label for="username">Username</label>
+    </div>
+    <div class="form-floating">
+        <input type="password" class="form-control"  id="password" name="_password" placeholder="Password"/>
+        <label for="password">Parole</label>
+    </div>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
