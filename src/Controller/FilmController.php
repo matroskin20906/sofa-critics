@@ -26,6 +26,11 @@ class FilmController extends AbstractController
     ){
     }
 
+    #[Route('film/search/{keywords}', name: 'app_film_search', defaults: ['keywords' => 'good'])]
+    public function search(string $keywords) {
+        
+    }
+
     #[Route('/film/new', name: 'film_new')]
     public function new(Request $request,  FilmUploader $filmUploader, EntityManagerInterface $entityManager): Response
     {
