@@ -72,8 +72,12 @@ class FilmController extends AbstractController
         $filmsNames = array();
         $filmsPhotos = array();
         for ($i = 0; $i < $n; $i++) {
-            $filmsNames[$i+1] = $films[$i]->getName();
-            $filmsPhotos[$i+1] = $films[$i]->getPhoto();
+            if ($films[$i] != null) {
+                $filmsNames[$i + 1] = $films[$i]->getName();
+                $filmsPhotos[$i + 1] = $films[$i]->getPhoto();
+            } else {
+                break;
+            }
         }
         return $this->render('home\homepage.html.twig',[
             'logedusername'=> $userNow->getUsername(),
