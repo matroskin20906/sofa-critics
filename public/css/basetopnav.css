@@ -145,7 +145,7 @@ input{
 #noend{
 	margin: auto;                         
 	width: 1004px;
-	background-color: rgb(255, 255, 255);
+	background-image: url("../img/cola.jpg");
 	color: black ;
 }
 #pagebtn{
