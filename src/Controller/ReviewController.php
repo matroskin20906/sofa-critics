@@ -33,14 +33,13 @@ class ReviewController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($review);
             $entityManager->flush();
-            return $this->redirectToRoute('app_welcome');
+            return $this->redirectToRoute('app_filmpage', ['filmId' => $filmId]);
         }
 
         return $this->renderForm('review/new.html.twig', [
             'reviewForm' => $form,
             'logedusername'=> $userNow->getUsername(),
             'logeduserphoto'=> $userNow->getPhotoFile(),
-            ''
         ]);
     }
 }

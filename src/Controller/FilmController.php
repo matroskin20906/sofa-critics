@@ -92,6 +92,24 @@ class FilmController extends AbstractController
         ]);
     }
 
+    #[
+        Route('film/{filmId}/review/{reviewId}/{status}', name: 'app_review_change',
+        requirements: ['filmId' => '\d+', 'reviewId' => '\d+', 'status' => '\d+'],
+        defaults: ['filmId' => '1', 'reviewId' => '1', 'status' => 'good'])
+    ]
+    public function review(string $reviewId, string $filmId, string $status, EntityManagerInterface $entityManager): Response
+    {
+        $review = $this->reviewService->getById($reviewId);
+        if ($status == 'good') {
+            $review->setGoodVotes($review->getGoodVotes() + 1);
+        }
+        if ($status == 'bad') {
+            $review->setBadVotes($review->getBadVotes() + 1);
+        }
+        $entityManager->persist($review);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_filmpage', ['filmId' => $filmId]);
+    }
 
     #[Route('/film/{id}', name: 'app_filmpage', requirements: ['id' => '\d+'], defaults: ['id' => '2'], methods: ['GET'])]
     public function id(string $id): Response

@@ -15,7 +15,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('photoFile', FileType::class, [
+            /*->add('photoFile', FileType::class, [
                     'constraints' => [
                         new File([
                             'mimeTypes' => [
@@ -25,7 +25,7 @@ class UserType extends AbstractType
                         ])
                     ],
                 ]
-            )
+            )*/
         ;
     }
 
