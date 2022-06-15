@@ -30,7 +30,7 @@
 <a href="{{ path('app_register') }}">
     <div id="filmOutbox">
         <div id="filmInbox">
-{% set waytofoto= 'filmPhotos/' ~ Filmsfotos[loop.index] %}
+{% set waytofoto = 'filmPhotos/' ~ Filmsfotos[loop.index] %}
             <img id="filmsaf" src="{{ asset(waytofoto) }}" alt="" >
         </div>
         <div id="filmInboxdown">
@@ -41,9 +41,22 @@
     </div>
 </a>
 </div>
+{% if loop.index == loop.last %}
+    {% set nnum = loop.index %}
+    {#
+    <p>XYZ</p>
+    <p>XYZ</p>
+    <p> {{ nnum }} </p>
+    <p>XYZ</p>
+    <p>XYZ</p>
+    #}
+{% endif %}
 
 {% endfor %}
 
+
+
+{% if nnum < 8 %}
 <div id="padding" >
 <a href="{{ path('film_new') }}">
     <div id="filmOutbox">
@@ -60,8 +73,29 @@
 </a>
 </div>
 
-
-
+{% endif %}
 {% endblock %}
 
-
+            {% block pagebtn %}
+                <div id="pagebtn">
+                {% if pagenum > 1 %}
+                    {% set oldpagenum = pagenum -1 %}
+                    <div id="oldpage">                    
+                        <a href="{{ path('app_welcome',{ 'page' : oldpagenum, 'n' : 8} ) }}">
+                        <p > << </p>
+                        </a>
+                    </div>
+                {% endif %}
+                    <div id="pagecount">    
+                            {{ pagenum }}                           
+                    </div>
+                {% if nnum > 7 %}
+                    {% set newpagenum = pagenum + 1 %}
+                    <div id="newpage">
+                         <a href="{{ path('app_welcome',{'page' : newpagenum,'n' : 8} ) }}">
+                        <p> >> </p>
+                        </a>
+                    </div>
+                {% endif %}
+                </div>
+            {% endblock %}
