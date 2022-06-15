@@ -2,7 +2,18 @@
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
+{% block pagebtn %}  {% endblock %}
+
+{% block avatar %} 
+    {% if app.user %}
+    {% block logeduserfoto %} {{ asset('userPhotos/' ~ app.user.photos )}} {% endblock %}
+{% block nickname %} {{ app.user.name }} {# Ник залогиненого #} {% endblock %}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div id="userchargebox">
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -10,7 +21,7 @@
 
     {% if app.user %}
         <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            You are logged in as {{ app.user.name }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
 
@@ -28,4 +39,13 @@
         Sign in
     </button>
 </form>
+<div id='blankava'>
+</div>
+<div id='inlinebox'>
+    <a href="{{ path('app_register')}}" > Register  </a>
+</div>
+<div id='inlinebox'>
+    <a href="{{ path('app_welcome') }}" > Log in as a Guest</a>
+</div>
+</div>
 {% endblock %}
