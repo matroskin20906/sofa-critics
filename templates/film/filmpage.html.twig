@@ -24,8 +24,8 @@
             {{ FilmActors }}
     </div>
 </div>
-
-<a href={{path("app_review_new", [])}}>
+    {% set id = FilmId %}
+<a href={{path("app_review_new", [id])}}>
     <button class="btn btn-lg btn-primary" type="submit">
         Create new review
     </button>
