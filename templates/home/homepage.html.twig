@@ -89,7 +89,7 @@
                     <div id="pagecount">    
                             {{ pagenum }}                           
                     </div>
-                {% if nnum > 11 %}
+                {% if nnum > 7 %}
                     {% set newpagenum = pagenum + 1 %}
                     <div id="newpage">
                          <a href="{{ path('app_welcome',[newpagenum,12]) }}">
