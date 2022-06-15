@@ -26,14 +26,29 @@ class FilmController extends AbstractController
     ){
     }
 
-    #[Route('film/search', name: 'app_film_search')]
+    #[Route('/film/search', name: 'app_film_search')]
     public function search(Request $request): Response
     {
-        var_dump($request->request->get("_keywords"));
-        die();
+        $keywords = $_GET["keywords"];
         $user = $this->getUser();
         $userNow = $this->userService->getById($user->getUserIdentifier());
-        $films = $this->filmRepository->findAllWithKeyword();
+        $films = $this->filmRepository->findAllWithKeyword($keywords);
+        $filmsNames = array();
+        $filmsPhotos = array();
+        $filmsIds = array();
+        $n = 8;
+        $page = 1;
+        $i = 0;
+        foreach ($films as $film) {
+            if ($film != null) {
+                $filmsNames[$i + 1] = $film->getName();
+                $filmsPhotos[$i + 1] = $film->getPhoto();
+                $filmsIds[$i + 1] = $film->getId();
+                $i++;
+            } else {
+                break;
+            }
+        }
         return $this->render('home\homepage.html.twig',[
             'logedusername'=> $userNow->getUsername(),
             'logeduserphoto'=>  $userNow->getPhoto(),

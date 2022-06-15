@@ -45,12 +45,12 @@ class FilmRepository extends ServiceEntityRepository
     public function findAllWithKeyword(string $keyword): array
     {
         $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery(
-            'SELECT f
-            FROM App\Entity\Film f
-            WHERE f.keywords like %keyword%'
-        )->setParameter('keyword', $keyword);
-        return $query->getResult();
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('f')
+            ->from('App\Entity\Film', 'f')
+            ->andWhere("f.keywords LIKE '%".$keyword."%'");
+        $result = $qb->getQuery()->getResult();
+        return $result;
     }
 
     public function create(Film $film): Response
