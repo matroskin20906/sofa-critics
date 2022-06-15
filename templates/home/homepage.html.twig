@@ -27,7 +27,7 @@
 
 {% for Filmsname in Filmsnames %}
 <div id="padding" >
-<a href="{{ path('app_register') }}">
+<a href="{{ path('app_filmpage',{'id' : FilmsIDs[loop.index] }) }}">
     <div id="filmOutbox">
         <div id="filmInbox">
 {% set waytofoto = 'filmPhotos/' ~ Filmsfotos[loop.index] %}
