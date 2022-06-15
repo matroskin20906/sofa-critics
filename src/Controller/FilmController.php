@@ -80,6 +80,8 @@ class FilmController extends AbstractController
             'logeduserphoto'=> $userNow->getPhoto(),
             'Filmsnames' => $filmsNames,
             'Filmsfotos' => $filmsPhotos,
+            'pagenum' => $page,
+            'nnum' => $n;
         ]);
     }
 
