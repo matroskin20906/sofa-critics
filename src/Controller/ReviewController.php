@@ -19,13 +19,15 @@ class ReviewController extends AbstractController
     }
 
     #[Route('/review/new/{filmId}', name: 'app_review_new', requirements: ['filmId' => '\d+'],
-        defaults: ['filmId' => '1'])]
+        defaults: ['filmId' => '1'], methods: ['GET'])]
     public function new(Request $request, string $filmId, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         $review = new Review();
         $userNow = $this->userService->getById($user->getUserIdentifier());
         $review->setAuthorId($userNow->getId());
+        var_dump($filmId);
+        die();
         $review->setFilmId((int)$filmId);
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
