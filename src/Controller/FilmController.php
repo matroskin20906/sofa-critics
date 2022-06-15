@@ -81,7 +81,7 @@ class FilmController extends AbstractController
             'Filmsnames' => $filmsNames,
             'Filmsfotos' => $filmsPhotos,
             'pagenum' => $page,
-            'nnum' => $n;
+            'nnum' => $n,
         ]);
     }
 
