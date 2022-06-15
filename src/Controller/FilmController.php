@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Film;
 use App\Form\FilmType;
+use App\Service\FilmService;
 use App\Service\FilmUploader;
+use App\Service\ReviewService;
+use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -16,6 +19,13 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class FilmController extends AbstractController
 {
+    public function __construct(
+        private UserService $userService,
+        private FilmService $filmService,
+        private ReviewService $reviewService
+    ){
+    }
+
     #[Route('/film/new', name: 'film_new')]
     public function new(Request $request,  FilmUploader $filmUploader, EntityManagerInterface $entityManager): Response
     {
@@ -42,61 +52,75 @@ class FilmController extends AbstractController
             return $this->redirectToRoute('app_welcome');
         }
         $user = $this->getUser();
+        //$userNow = $this->userService->getById($user->getUserIdentifier());
 
         return $this->renderForm('film/new.html.twig', [
             'filmForm' => $form,             // ... changed name from form into filmForm
-            'logedusername'=> 'Default',//$user->getUserIdentifier(),
-            'logeduserphoto'=> '1.png',
+            'logedusername'=> 'Default',//$userNow->getUsername(),
+            'logeduserphoto'=> '1.png',//$userNow->getPhoto(),
         ]);
     }
 
-    #[Route('/', name: 'app_welcome', methods: ['GET'])]
-    public function welcome(): Response
+    #[Route('/{page}/{n}', name: 'app_welcome', requirements: ['page' => '\d+', 'n' => '\d+'],
+        defaults: ['page' => '1', 'n' => '10'], methods: ['GET'])]
+    public function welcome(string $page, string $n): Response
     {
+        $user = $this->getUser();
+        //$userNow = $this->userService->getById($user->getUserIdentifier());
+
+        $films = $this->filmService->findNFilms((int)$page, (int)$n);
+        $filmsNames = array();
+        $filmsPhotos = array();
+        for ($i = 0; $i < $n; $i++) {
+            $filmsNames[$i+1] = $films[$i]->getName();
+            $filmsPhotos[$i+1] = $films[$i]->getPhoto();
+        }
         return $this->render('home\homepage.html.twig',[
-            'logedusername'=> 'NameNick99',
-            'logeduserphoto'=> '1.png',
-            'Filmsnames' => $Barrayname = array(
-                1 => 'V means Vendetto',
-                2 => 'D means Dislecsia',
-                3 => 'L means Logic',
-            ),
-            'Filmsfotos' => $Barrayfoto = array(
-                1 => '2.png',
-                2 => '3.png',
-                3 => '4.png',
-            ),
+            'logedusername'=> 'NameNick99',//$userNow->getUsername(),
+            'logeduserphoto'=> '1.png',//$userNow->getPhoto(),
+            'Filmsnames' => $filmsNames,
+            'Filmsfotos' => $filmsPhotos,
         ]);
     }
 
-    #[Route('/film', name: 'app_filmpage', methods: ['GET'])]
-    public function id(): Response
+
+    #[Route('/film/{id}', name: 'app_filmpage', requirements: ['id' => '\d+'], defaults: ['id' => '2'], methods: ['GET'])]
+    public function id(string $id): Response
     {
+
+        $user = $this->getUser();
+        //$userNow = $this->userService->getById($user->getUserIdentifier());
+        $film = $this->filmService->findById((int)$id);
+        $reviews = $this->reviewService->getByFilmId($id);
+
+        $reviewsContent = array();
+        $reviewsAuthor = array();
+        $reviewsGood = array();
+        $reviewsBad = array();
+        $reviewsTitle = array();
+        $reviewsAuthorAvatar = array();
+
+        foreach ($reviews as $review) {
+            $reviewsContent[] = $review->getContent();
+            $reviewsAuthor[] = $this->userService->getById($review->getAuthorId())->getUsername();
+            $reviewsAuthorAvatar[] = $this->userService->getById($review->getAuthorId())->getPhoto();
+            $reviewsTitle[] = $review->getTitle();
+            $reviewsGood[] = $review->getGoodVotes();
+            $reviewsBad[] = $review->getBadVotes();
+        }
+
         return $this->render('film\filmpage.html.twig',[
-            'logedusername'=> '00NickName',
-            'logeduserphoto'=> '1.png',
-            'Filmsname'=> 'L means Logic',
-            'Filmsfoto' => '4.png',
-            'reviewfotos' => $Barrayreviewfoto = array(
-                1 => '2.png',
-                2 => '3.png',
-            ),
-            'reviewcoments' => $Barrayreviewcoment = array(
-                1 => 'I hate my live',
-                2 => 'I love my hate',
-            ),
-            'reviewusers' => $Barrayreviewusers = array(
-                1 => 'NameNick99',
-                2 => '1TESTUSER1',
-            ),
-            'reviewpluss' => $Barrayreviewpluss = array(
-                1 => '10',
-                2 => '0',
-            ),
-            'reviewminus' => $Barrayreviewminus = array(
-                1 => '20',
-                2 => '100',
-            ),
+            'logedusername'=> '00NickName',//$userNow->getUsername(),
+            'logeduserphoto'=> '1.png',//$userNow->getPhoto(),
+            'Filmsname'=> $film->getName(),
+            'Filmsfoto' => $film->getPhoto(),
+            'FilmDirector' => $film->getDirector(),
+            'FilmActors' => $film->getActors(),
+            'reviewfotos' => $reviewsAuthorAvatar,
+            'reviewcoments' => $reviewsContent,
+            'reviewusers' => $reviewsAuthor,
+            'reviewpluss' => $reviewsGood,
+            'reviewminus' => $reviewsBad,
         ]);
     }
 

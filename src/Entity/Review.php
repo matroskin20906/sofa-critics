@@ -44,9 +44,14 @@ class Review
     private ?string $content = null;
 
     #[
-        ORM\Column(type: 'json')
+        ORM\Column(type: 'integer')
     ]
-    private array $votes = [];
+    private int $goodVotes = 0;
+
+    #[
+        ORM\Column(type: 'integer')
+    ]
+    private int $badVotes = 0;
 
     #[
         ORM\Column(type: 'integer'),
@@ -71,20 +76,37 @@ class Review
     }
 
     /**
-     * @return array
+     * @return int|null
      */
-    public function getVotes(): array
+    public function getGoodVotes(): ?int
     {
-        return $this->votes;
+        return $this->goodVotes;
     }
 
     /**
-     * @param array $votes
+     * @param int $goodVotes
      */
-    public function setVotes(array $votes): void
+    public function setGoodVotes(int $goodVotes): void
     {
-        $this->votes = $votes;
+        $this->goodVotes = $goodVotes;
     }
+
+    /**
+     * @return int|null
+     */
+    public function getBadVotes(): ?int
+    {
+        return $this->badVotes;
+    }
+
+    /**
+     * @param int $badVotes
+     */
+    public function setBadVotes(int $badVotes): void
+    {
+        $this->badVotes = $badVotes;
+    }
+
 
     /**
      * @return int|null

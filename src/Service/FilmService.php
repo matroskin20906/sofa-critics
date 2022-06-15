@@ -37,7 +37,7 @@ class FilmService
     {
         $arrResult = [];
         $page--;
-        $start = $n * $page;
+        $start = $n * $page + 1;
         $stop = $start + $n;
         for ($i = $start; $i < $stop; $i++) {
             $arrResult[] = $this->findById($i);
