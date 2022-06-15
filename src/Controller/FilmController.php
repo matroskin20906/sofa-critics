@@ -71,10 +71,12 @@ class FilmController extends AbstractController
         $films = $this->filmService->findNFilms((int)$page, (int)$n);
         $filmsNames = array();
         $filmsPhotos = array();
+        $filmsIds = array();
         for ($i = 0; $i < $n; $i++) {
             if ($films[$i] != null) {
                 $filmsNames[$i + 1] = $films[$i]->getName();
                 $filmsPhotos[$i + 1] = $films[$i]->getPhoto();
+                $filmsIds[$i + 1] = $films[$i]->getId();
             } else {
                 break;
             }
@@ -82,6 +84,7 @@ class FilmController extends AbstractController
         return $this->render('home\homepage.html.twig',[
             'logedusername'=> $userNow->getUsername(),
             'logeduserphoto'=>  $userNow->getPhoto(),
+            'FilmsIDs' => $filmsIds,
             'Filmsnames' => $filmsNames,
             'Filmsfotos' => $filmsPhotos,
             'pagenum' => $page,
