@@ -117,6 +117,7 @@ class FilmController extends AbstractController
             'Filmsfoto' => $film->getPhoto(),
             'FilmDirector' => $film->getDirector(),
             'FilmActors' => $film->getActors(),
+            'FilmId' => $film->getId(),
             'reviewfotos' => $reviewsAuthorAvatar,
             'reviewcoments' => $reviewsContent,
             'reviewusers' => $reviewsAuthor,
