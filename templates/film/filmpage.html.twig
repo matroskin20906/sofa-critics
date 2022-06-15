@@ -13,17 +13,20 @@
                                                                                                     <div id='noend'>
 
 
-<div id="padding" >
+<div id="padding" id="inlinetext">
     <div id="filmOutbox">
         <div id="filmInbox">
         <img id="filmsaf" src="{{ asset('filmPhotos/' ~ Filmsfoto ) }}" alt="" >
         </div>
-        
-            {{ Filmsname }}
-            {{ FilmDirector }}
-            {{ FilmActors }}
-            {{ FilmId }}
+            <p >{{ Filmsname }} </p>
+            <p></p>
+            <p></p>
     </div>
+</div>
+<div id="inlinetext">
+            <p> {{ FilmDirector }} </p>
+            <p> {{ FilmActors }} </p>
+            <p >{{ FilmId }} </p>
 </div>
 <a href={{path("app_review_new",{'filmId' : FilmId})}}>
     <button class="btn btn-lg btn-primary" type="submit">
