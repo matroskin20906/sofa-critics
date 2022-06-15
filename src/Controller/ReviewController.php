@@ -18,7 +18,7 @@ class ReviewController extends AbstractController
     ){
     }
 
-    #[Route('/review/new/{filmId}', name: 'review_new', requirements: ['filmId' => '\d+'],
+    #[Route('/review/new/{filmId}', name: 'app_review_new', requirements: ['filmId' => '\d+'],
         defaults: ['filmId' => '1'])]
     public function new(Request $request, string $filmId, EntityManagerInterface $entityManager): Response
     {
