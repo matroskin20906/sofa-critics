@@ -62,7 +62,7 @@ class FilmController extends AbstractController
     }
 
     #[Route('/{page}/{n}', name: 'app_welcome', requirements: ['page' => '\d+', 'n' => '\d+'],
-        defaults: ['page' => '1', 'n' => '10'], methods: ['GET'])]
+        defaults: ['page' => '1', 'n' => '8'], methods: ['GET'])]
     public function welcome(string $page, string $n): Response
     {
         $user = $this->getUser();

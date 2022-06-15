@@ -56,7 +56,7 @@
 
 
 
-{% if nnum < 12 %}
+{% if nnum < 8 %}
 <div id="padding" >
 <a href="{{ path('film_new') }}">
     <div id="filmOutbox">
@@ -81,7 +81,7 @@
                 {% if pagenum > 1 %}
                     {% set oldpagenum = pagenum -1 %}
                     <div id="oldpage">                    
-                        <a href="{{ path('app_welcome',[oldpagenum,12]) }}">
+                        <a href="{{ path('app_welcome',[oldpagenum,8]) }}">
                         <p > << </p>
                         </a>
                     </div>
@@ -92,7 +92,7 @@
                 {% if nnum > 7 %}
                     {% set newpagenum = pagenum + 1 %}
                     <div id="newpage">
-                         <a href="{{ path('app_welcome',[newpagenum,12]) }}">
+                         <a href="{{ path('app_welcome',[newpagenum,8]) }}">
                         <p> >> </p>
                         </a>
                     </div>
