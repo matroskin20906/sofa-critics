@@ -4,14 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Film;
 use App\Form\FilmType;
+use App\Repository\FilmRepository;
 use App\Service\FilmService;
 use App\Service\FilmUploader;
 use App\Service\ReviewService;
 use App\Service\UserService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,13 +21,28 @@ class FilmController extends AbstractController
     public function __construct(
         private UserService $userService,
         private FilmService $filmService,
-        private ReviewService $reviewService
+        private ReviewService $reviewService,
+        private FilmRepository $filmRepository,
     ){
     }
 
-    #[Route('film/search/{keywords}', name: 'app_film_search', defaults: ['keywords' => 'good'])]
-    public function search(string $keywords) {
-        
+    #[Route('film/search', name: 'app_film_search')]
+    public function search(Request $request): Response
+    {
+        var_dump($request->request->get("_keywords"));
+        die();
+        $user = $this->getUser();
+        $userNow = $this->userService->getById($user->getUserIdentifier());
+        $films = $this->filmRepository->findAllWithKeyword();
+        return $this->render('home\homepage.html.twig',[
+            'logedusername'=> $userNow->getUsername(),
+            'logeduserphoto'=>  $userNow->getPhoto(),
+            'FilmsIDs' => $filmsIds,
+            'Filmsnames' => $filmsNames,
+            'Filmsfotos' => $filmsPhotos,
+            'pagenum' => $page,
+            'nnum' => $n,
+        ]);
     }
 
     #[Route('/film/new', name: 'film_new')]
