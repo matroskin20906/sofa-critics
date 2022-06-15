@@ -12,8 +12,8 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/reset.css') }}"> 
-            <link rel="stylesheet" href="{{ asset('css/basetopnav.css') }}">  
-            <link rel="stylesheet" href="{{ asset('css/films.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/newbasetopnav.css') }}">  
+            <link rel="stylesheet" href="{{ asset('css/newfilms.css') }}">
 
         {% endblock %}
 
@@ -41,12 +41,15 @@
                         </div>
                         </a>
                     {% endblock %}
+
                         <a href="{{ path('app_welcome') }}">
                             <img id="logo" src="{{ asset('img/logo.png') }}" alt="" >
                         </a>
-                        <a href="{{ path('app_filmpage') }}">
+                        <button id='searchlogobtn' >
                             <img id="searchlogo" src="{{ asset('img/search.png') }}" alt="" >
-                        </a>
+                        </button>
+                        <input id="searchinput" type="text" placeholder="Search.." >
+ 
                 </nav>
 
             {% endblock %}
