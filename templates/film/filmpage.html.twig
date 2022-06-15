@@ -6,11 +6,11 @@
 
 {% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
 {% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
-
+ {% block pagebtn %} {% endblock %}
 {% block content %} 
 
 
-
+                                                                                                    <div id='noend'>
 
 
 <div id="padding" >
@@ -70,5 +70,5 @@
 
 {% endfor %}
 
-
+</div>
 {% endblock %}

@@ -46,6 +46,7 @@ body{
 	font-family: 'Serico','Algerian','Times';
 	min-width:1300px;                            /*jamaina */
     background-image: url("../img/back.jpg");
+	color: black ; 
 }
 nav{
 	background-color:rgb(215,188,83);
@@ -115,7 +116,7 @@ nav{
 
 #TcontentT{
 	
-	max-height: 1860px;
+/*	max-height: 1860px; */
 	
 }
 #fimlsbox{
@@ -123,14 +124,20 @@ nav{
 	max-height: 1800px;
 	width: 1004px;
 	background-color: rgb(255, 255, 255);
-
+	color: black ;
+}
+#noend{
+	margin: auto;                         
+	width: 1004px;
+	background-color: rgb(255, 255, 255);
+	color: black ;
 }
 #pagebtn{
        	margin: auto;                         
 	min-height: 60px;
 	width: 1004px;
 	font-size: 50px;
-	background-color: rgb(0, 162, 255);
+/**	background-color: rgb(0, 162, 255); **/
 }
 #oldpage{
 	position: relative;
