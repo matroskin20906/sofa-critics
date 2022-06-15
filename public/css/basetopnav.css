@@ -112,13 +112,14 @@ input{
 	top:13px;
 	height: 125px;
 	width: 125px;
-	background-color: rgb(255, 255, 255);
+	background-image: url("../img/avatarback.jpg");
+/*	background-color: rgb(255, 255, 255); */
 	
 }
 #minibox{
 	width: 125px;
 	height: 25px;
-	background-color: rgb(255, 255, 255);
+/*	background-color: rgb(255, 255, 255); */
 	line-height: 25px;
 	
 }
@@ -138,7 +139,7 @@ input{
 		margin: auto;                         
 	max-height: 1800px;
 	width: 1004px;
-	background-color: rgb(255, 255, 255);
+	background-image: url("../img/cola.jpg");
 	color: black ;
 }
 #noend{
