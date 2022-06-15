@@ -31,6 +31,7 @@ class ReviewController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $review->setReactBy("");
             $entityManager->persist($review);
             $entityManager->flush();
             return $this->redirectToRoute('app_filmpage', ['filmId' => $filmId]);

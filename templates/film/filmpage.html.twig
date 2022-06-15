@@ -45,17 +45,21 @@
                 </div>
             </div>
             <div id="pluss">
+                <a href="{{ path('app_review_change',{'filmId': FilmId, 'status': '1', 'reviewId': reviewIds[loop.index]}) }}">
                     <img id="vote" src="{{ asset('img/tick.png') }}" alt="" >
                         <p id="voteplus">
                           {{reviewpluss[loop.index]}} 
                         </p>
+                </a>
             </div>
-            <div id="minus">
-                    <img id="vote" src="{{ asset('img/kross.png') }}" alt="" >
-                    <p id="voteminus">
-                        {{reviewminus[loop.index]}}
-                    </p>
-            </div>
+                <div id="minus">
+                    <a href="{{ path('app_review_change',{'filmId': FilmId, 'status': '2', 'reviewId': reviewIds[loop.index]}) }}">
+                        <img id="vote" src="{{ asset('img/kross.png') }}" alt="" >
+                        <p id="voteminus">
+                            {{reviewminus[loop.index]}}
+                        </p>
+                    </a>
+                </div>
         </div>  
         <div id="usersscoment">
             <p>{{ reviewcoment }}</p>

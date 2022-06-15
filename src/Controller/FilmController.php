@@ -95,26 +95,31 @@ class FilmController extends AbstractController
     #[
         Route('film/{filmId}/review/{reviewId}/{status}', name: 'app_review_change',
         requirements: ['filmId' => '\d+', 'reviewId' => '\d+', 'status' => '\d+'],
-        defaults: ['filmId' => '1', 'reviewId' => '1', 'status' => 'good'])
+        defaults: ['filmId' => '1', 'reviewId' => '1', 'status' => '1'])
     ]
     public function review(string $reviewId, string $filmId, string $status, EntityManagerInterface $entityManager): Response
     {
+        $userId = $this->getUser()->getUserIdentifier();
         $review = $this->reviewService->getById($reviewId);
-        if ($status == 'good') {
-            $review->setGoodVotes($review->getGoodVotes() + 1);
+        $reacted = $review->getReactBy();
+        if (strpos($reacted, $userId) == false) {
+            if ($status == '1') {
+                $review->setGoodVotes($review->getGoodVotes() + 1);
+            }
+            if ($status == '2') {
+                $review->setBadVotes($review->getBadVotes() + 1);
+            }
+            $reacted = $reacted . " " . $userId;
+            $review->setReactBy($reacted);
+            $entityManager->persist($review);
+            $entityManager->flush();
         }
-        if ($status == 'bad') {
-            $review->setBadVotes($review->getBadVotes() + 1);
-        }
-        $entityManager->persist($review);
-        $entityManager->flush();
-        return $this->redirectToRoute('app_filmpage', ['filmId' => $filmId]);
+        return $this->redirectToRoute('app_filmpage', ['id' => $filmId]);
     }
 
     #[Route('/film/{id}', name: 'app_filmpage', requirements: ['id' => '\d+'], defaults: ['id' => '2'], methods: ['GET'])]
     public function id(string $id): Response
     {
-
         $user = $this->getUser();
         $userNow = $this->userService->getById($user->getUserIdentifier());
         $film = $this->filmService->findById((int)$id);
@@ -126,12 +131,14 @@ class FilmController extends AbstractController
         $reviewsBad = array();
         $reviewsTitle = array();
         $reviewsAuthorAvatar = array();
+        $reviewsId = array();
         $i = 1;
         foreach ($reviews as $review) {
             $reviewsContent[$i] = $review->getContent();
             $reviewsAuthor[$i] = $this->userService->getById($review->getAuthorId())->getUsername();
             $reviewsAuthorAvatar[$i] = $this->userService->getById($review->getAuthorId())->getPhoto();
             $reviewsTitle[$i] = $review->getTitle();
+            $reviewsId[$i] = $review->getId();
             $reviewsGood[$i] = $review->getGoodVotes();
             $reviewsBad[$i] = $review->getBadVotes();
             $i++;
@@ -145,6 +152,7 @@ class FilmController extends AbstractController
             'FilmDirector' => $film->getDirector(),
             'FilmActors' => $film->getActors(),
             'FilmId' => $film->getId(),
+            'reviewIds' => $reviewsId,
             'reviewfotos' => $reviewsAuthorAvatar,
             'reviewcoments' => $reviewsContent,
             'reviewusers' => $reviewsAuthor,

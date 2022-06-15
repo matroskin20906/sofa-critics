@@ -58,6 +58,29 @@ class Review
     ]
     private int $filmId;
 
+    #[
+        ORM\Column(type: 'string'),
+        Assert\Type(type: 'string'),
+        Assert\Length(max: 2048)
+    ]
+    private ?string $reactBy = null;
+
+    /**
+     * @return string|null
+     */
+    public function getReactBy(): ?string
+    {
+        return $this->reactBy;
+    }
+
+    /**
+     * @param string|null $reactBy
+     */
+    public function setReactBy(?string $reactBy): void
+    {
+        $this->reactBy = $reactBy;
+    }
+
     /**
      * @return int
      */
