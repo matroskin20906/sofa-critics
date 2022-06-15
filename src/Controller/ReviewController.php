@@ -26,8 +26,6 @@ class ReviewController extends AbstractController
         $review = new Review();
         $userNow = $this->userService->getById($user->getUserIdentifier());
         $review->setAuthorId($userNow->getId());
-        var_dump($filmId);
-        die();
         $review->setFilmId((int)$filmId);
         $form = $this->createForm(ReviewType::class, $review);
         $form->handleRequest($request);
