@@ -65,13 +65,28 @@ nav{
 
 } 
 
+input{
+	font-size: 30px;
+}
+#searchinput{
+	position: relative;
+	float:right;
+	right: 130px;
+	top: 60px;
+	font-size: 30px;
 
-
-#searchlogo{
+}
+#searchlogobtn{
 	position: relative;
 	float:right;
 	right: 100px;
 	top: 50px;
+	border: none;
+	background: none;
+}
+#searchlogo{
+	position: relative;
+	top: 3px;
 	height: 55px;
 } 
 #logo{
