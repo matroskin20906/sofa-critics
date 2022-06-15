@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\UserService;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -11,9 +12,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    public function __construct(
+      private UserService $userService
+    ){
+    }
+
     #[Route('/admin/film', name: 'admin_film')]
     public function film(): Response
     {
+        $admin = false;
+        $user = $this->getUser();
+        $userNow = $this->userService->getById($user->getUserIdentifier());
+        $roles = $userNow->getRoles();
+        foreach ($roles as $role) {
+            if ($role == "ADMIN") {
+                $admin = true;
+                break;
+            }
+        }
+        if (!$admin) {
+            return $this->redirectToRoute('app_welcome');
+        }
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(FilmCrudController::class)->generateUrl());
     }
@@ -21,7 +40,19 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin/user', name: 'admin_user')]
     public function index(): Response
     {
-
+        $admin = false;
+        $user = $this->getUser();
+        $userNow = $this->userService->getById($user->getUserIdentifier());
+        $roles = $userNow->getRoles();
+        foreach ($roles as $role) {
+            if ($role == "ADMIN") {
+                $admin = true;
+                break;
+            }
+        }
+        if (!$admin) {
+            return $this->redirectToRoute('app_welcome');
+        }
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
 

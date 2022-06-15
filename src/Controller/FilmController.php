@@ -63,6 +63,19 @@ class FilmController extends AbstractController
     #[Route('/film/new', name: 'film_new')]
     public function new(Request $request,  FilmUploader $filmUploader, EntityManagerInterface $entityManager): Response
     {
+        $admin = false;
+        $user = $this->getUser();
+        $userNow = $this->userService->getById($user->getUserIdentifier());
+        $roles = $userNow->getRoles();
+        foreach ($roles as $role) {
+            if ($role == "ADMIN") {
+                $admin = true;
+                break;
+            }
+        }
+        if (!$admin) {
+            return $this->redirectToRoute('app_welcome');
+        }
         $film = new Film();
         $form = $this->createForm(FilmType::class, $film);
         $form->handleRequest($request);
