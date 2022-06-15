@@ -159,7 +159,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @param File|null $photoFile
      */
-    public function setPhotoFile(?File $photoFile = null) {
+    public function setPhotoFile(?File $photoFile = null)
+    {
         $this->photoFile = $photoFile;
     }
 

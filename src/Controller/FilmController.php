@@ -52,12 +52,12 @@ class FilmController extends AbstractController
             return $this->redirectToRoute('app_welcome');
         }
         $user = $this->getUser();
-        //$userNow = $this->userService->getById($user->getUserIdentifier());
+        $userNow = $this->userService->getById($user->getUserIdentifier());
 
         return $this->renderForm('film/new.html.twig', [
             'filmForm' => $form,             // ... changed name from form into filmForm
-            'logedusername'=> 'Default',//$userNow->getUsername(),
-            'logeduserphoto'=> '1.png',//$userNow->getPhoto(),
+            'logedusername'=> $userNow->getUsername(),
+            'logeduserphoto'=> $userNow->getPhoto(),
         ]);
     }
 
@@ -77,7 +77,7 @@ class FilmController extends AbstractController
         }
         return $this->render('home\homepage.html.twig',[
             'logedusername'=> $userNow->getUsername(),
-            'logeduserphoto'=> $userNow->getPhoto(),
+            'logeduserphoto'=>  $userNow->getPhoto(),
             'Filmsnames' => $filmsNames,
             'Filmsfotos' => $filmsPhotos,
         ]);
@@ -89,7 +89,7 @@ class FilmController extends AbstractController
     {
 
         $user = $this->getUser();
-        //$userNow = $this->userService->getById($user->getUserIdentifier());
+        $userNow = $this->userService->getById($user->getUserIdentifier());
         $film = $this->filmService->findById((int)$id);
         $reviews = $this->reviewService->getByFilmId($id);
 
@@ -99,19 +99,20 @@ class FilmController extends AbstractController
         $reviewsBad = array();
         $reviewsTitle = array();
         $reviewsAuthorAvatar = array();
-
+        $i = 1;
         foreach ($reviews as $review) {
-            $reviewsContent[] = $review->getContent();
-            $reviewsAuthor[] = $this->userService->getById($review->getAuthorId())->getUsername();
-            $reviewsAuthorAvatar[] = $this->userService->getById($review->getAuthorId())->getPhoto();
-            $reviewsTitle[] = $review->getTitle();
-            $reviewsGood[] = $review->getGoodVotes();
-            $reviewsBad[] = $review->getBadVotes();
+            $reviewsContent[$i] = $review->getContent();
+            $reviewsAuthor[$i] = $this->userService->getById($review->getAuthorId())->getUsername();
+            $reviewsAuthorAvatar[$i] = $this->userService->getById($review->getAuthorId())->getPhoto();
+            $reviewsTitle[$i] = $review->getTitle();
+            $reviewsGood[$i] = $review->getGoodVotes();
+            $reviewsBad[$i] = $review->getBadVotes();
+            $i++;
         }
 
         return $this->render('film\filmpage.html.twig',[
-            'logedusername'=> '00NickName',//$userNow->getUsername(),
-            'logeduserphoto'=> '1.png',//$userNow->getPhoto(),
+            'logedusername'=> $userNow->getUsername(),
+            'logeduserphoto'=> $userNow->getPhoto(),
             'Filmsname'=> $film->getName(),
             'Filmsfoto' => $film->getPhoto(),
             'FilmDirector' => $film->getDirector(),

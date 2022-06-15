@@ -10,15 +10,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[
     ORM\Entity(repositoryClass: ReviewRepository::class),
-    UniqueEntity('hash'),
+    UniqueEntity('id'),
 ]
 class Review
 {
     #[
         ORM\Id,
         ORM\Column(type: 'integer'),
-        ORM\GeneratedValue(strategy: "SEQUENCE"),
-        ORM\SequenceGenerator(sequenceName: "app.review_id_seq", allocationSize: 1, initialValue: 1)
+        ORM\GeneratedValue
     ]
     private ?int $id = null;
 

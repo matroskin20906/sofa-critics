@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block title %}New review{% endblock %}
+
+{% block pagebtn %}  {% endblock %}
+
+{% block logeduserfoto %} {{ asset('userPhotos/' ~ logeduserphoto )}} {% endblock %}
+{% block nickname %} {{ logedusername }} {# Ник залогиненого #} {% endblock %}
+ 
+{% block content %}
+
+    <div id="reviewchargebox">
+        <h1> New Review</h1>
+        {#     in FilmConoller name is form... i changed it to reviewForm  #}
+        {{ form_start(reviewForm) }}
+
+        {{ form_row(reviewForm.title) }}
+
+        {{ form_row(reviewForm.content) }}
+
+        <button type="submit" class="btn">Create</button>
+        {{ form_end(reviewForm) }}
+
+    </div>
+{% endblock %}

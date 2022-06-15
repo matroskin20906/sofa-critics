@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\UserService;
 use App\Service\UserUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -14,11 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    public function __construct(
+      private UserService $userService,
+    ){
+    }
+
     #[Route('/user/new', name: 'user_new')]
     public function new(Request $request,  UserUploader $userUploader): Response
     {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $user = $this->getUser();
+        $userNow = $this->userService->getById($user->getUserIdentifier());
+        $form = $this->createForm(UserType::class, $userNow);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -28,7 +35,7 @@ class UserController extends AbstractController
             if ($pictureFile) {
                 $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $pictureFileName = $userUploader->upload($pictureFile);
-                $newFilename = $user->getUserIdentifier();
+                $newFilename = $userNow->getUserIdentifier();
 
                 // Move the file to the directory where user pictures are stored
                 try {
@@ -39,8 +46,9 @@ class UserController extends AbstractController
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
-
             }
+            $userNow->setUsername($form->get('username')->getData());
+            $userNow->setPhotoFile($pictureFile);
 
             return $this->redirectToRoute('app_welcome');
         }
