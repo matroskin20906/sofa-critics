@@ -75,12 +75,14 @@
 
 }
 #voteplus{
+    max-width: 150px;
     font-size: 70px;
     position: relative;
     top:-50px;
 	right: -145px;
 }
 #voteminus{
+    max-width: 150px;
     font-size: 70px;
     position: relative;
     top:-50px;
