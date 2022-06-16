@@ -6,8 +6,8 @@
 
 {% block avatar %} 
     {% if app.user %}
-    {% block logeduserfoto %} {{ asset('userPhotos/' ~ app.user.photo )}} {% endblock %}
-{% block nickname %} {{ app.user.username }} {# Ник залогиненого #} {% endblock %}
+   {# {% block logeduserfoto %} {{ asset('userPhotos/' ~ app.user.photo )}} {% endblock %} #}
+    {#  {% block nickname %} {{ app.user.username }}  {% endblock %} #}
     {% endif %}
 {% endblock %}
 

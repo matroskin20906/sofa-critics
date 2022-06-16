@@ -113,7 +113,18 @@ class FilmController extends AbstractController
     public function welcome(string $page, string $n): Response
     {
         $user = $this->getUser();
+        if (is_null($user)) {
+            return $this->redirectToRoute('app_login');
+        }
         $userNow = $this->userService->getById($user->getUserIdentifier());
+        $admin = false;
+        $roles = $userNow->getRoles();
+        foreach ($roles as $role) {
+            if ($role == "ADMIN") {
+                $admin = true;
+                break;
+            }
+        }
 
         $films = $this->filmService->findNFilms((int)$page, (int)$n);
         $filmsNames = array();
@@ -131,6 +142,7 @@ class FilmController extends AbstractController
         return $this->render('home\homepage.html.twig',[
             'logedusername'=> $userNow->getUsername(),
             'logeduserphoto'=>  $userNow->getPhoto(),
+            'isAdmin' => $admin,
             'FilmsIDs' => $filmsIds,
             'Filmsnames' => $filmsNames,
             'Filmsfotos' => $filmsPhotos,
