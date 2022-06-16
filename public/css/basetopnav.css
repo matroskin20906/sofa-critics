@@ -198,3 +198,6 @@ input{
 	max-width:500px;
 	display : inline-block;
 }
+#inlinetext{
+	display : inline-block;
+}
