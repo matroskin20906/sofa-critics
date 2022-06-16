@@ -118,3 +118,9 @@ hr{
     width: 150px;
     height: 150px;
 }
+#minboxmin{
+    min-height: 20px;
+}
+#btn-primary{
+    font-size: 25px;
+}
