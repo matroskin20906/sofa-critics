@@ -10,25 +10,28 @@
 {% block content %} 
 
 
-                                                                                                    <div id='noend'>
+<div id='noend'>
 
 
-<div id="padding" >
-    <div id="filmOutbox">
-        <div id="filmInbox">
-        <img id="filmsaf" src="{{ asset('filmPhotos/' ~ Filmsfoto ) }}" alt="" >
+    <div id="padding" id="inlinetext">
+        <div id="filmOutbox">
+            <div id="filmInbox">
+                <img id="filmsaf" src="{{ asset('filmPhotos/' ~ Filmsfoto ) }}" alt="" >
+            </div>
+            <p >{{ Filmsname }} </p>
+            <p></p>
+            <p></p>
         </div>
-        
-            {{ Filmsname }}
-            {{ FilmDirector }}
-            {{ FilmActors }}
     </div>
-</div>
-<a href={{path("app_review_new",{'filmId' : FilmId})}}>
-    <button class="btn btn-lg btn-primary" type="submit">
-        Create new review
-    </button>
-</a>
+    <div id="inlinetext">
+        <p> {{ FilmDirector }} </p>
+        <p> {{ FilmActors }} </p>
+    </div>
+    <a href={{path("app_review_new",{'filmId' : FilmId})}}>
+        <button class="btn btn-lg btn-primary" type="submit">
+            Create new review
+        </button>
+    </a>
 
 {% for reviewcoment in reviewcoments %}
 <hr>
