@@ -13,8 +13,9 @@ class ReviewType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('content')
-        ;
+            ->add('content', null, array(
+                'attr' => array('style' => 'width: 400px'))
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)

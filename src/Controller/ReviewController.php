@@ -40,7 +40,7 @@ class ReviewController extends AbstractController
         return $this->renderForm('review/new.html.twig', [
             'reviewForm' => $form,
             'logedusername'=> $userNow->getUsername(),
-            'logeduserphoto'=> $userNow->getPhotoFile(),
+            'logeduserphoto'=> $userNow->getPhoto(),
         ]);
     }
 }
