@@ -68,6 +68,10 @@ nav{
 input{
 	font-size: 30px;
 }
+button{
+	font-family: 'Serico','Algerian','Times';
+	font-size: 30px;
+}
 #searchinput{
 	position: relative;
 	float:right;
@@ -83,6 +87,16 @@ input{
 	top: 50px;
 	border: none;
 	background: none;
+}
+#btnlogout{
+	font-size: 30px;
+	position: relative;
+	float:left;
+	left: 150px;
+	top: 60px;
+	border: none;
+	background: none;
+	font-family: 'Serico','Algerian','Times';
 }
 #searchlogo{
 	position: relative;

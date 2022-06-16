@@ -119,8 +119,9 @@ hr{
     height: 150px;
 }
 #minboxmin{
-    min-height: 20px;
+    min-height: 10px;
 }
-#btn-primary{
-    font-size: 25px;
+#btnreview{
+    font-size: 30px;
+    padding: 10px;
 }

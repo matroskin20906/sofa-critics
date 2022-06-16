@@ -42,8 +42,9 @@
                         </a>
                     {% endblock %}
 
-                        
-
+                        <form action="{{ path('app_logout') }}"  method="get">
+                            <button id='btnlogout' type="submit"> Log out </button>
+                        </form>
                         <a href="{{ path('app_welcome') }}">
                             <img id="logo" src="{{ asset('img/logo.png') }}" alt="" >
                         </a>
